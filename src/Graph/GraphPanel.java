@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class GraphPanel extends JPanel {
 
-    LineGraph g;
+    Graph g;
     public ArrayList<LineGraph> l = new ArrayList<>();
     int w;
     int h;
@@ -18,7 +18,7 @@ public class GraphPanel extends JPanel {
     double maxY;
     boolean useBounds;
 
-    GraphPanel(LineGraph G, int W, int H, double MinX, double MinY,
+    GraphPanel(Graph G, int W, int H, double MinX, double MinY,
             double MaxX, double MaxY) {
         g = G;
         w = W;
@@ -31,7 +31,7 @@ public class GraphPanel extends JPanel {
         this.setBackground(G.getBackColor());
     }
 
-    GraphPanel(LineGraph G, int W, int H) {
+    GraphPanel(Graph G, int W, int H) {
         g = G;
         w = W;
         h = H;
@@ -69,7 +69,7 @@ public class GraphPanel extends JPanel {
                 g.drawArea(graphics, w, h, minX, minY, maxX, maxY);
             } else {
                 g.drawGrid(graphics, w, h, minX, minY, maxX, maxY);
-                g.drawLine(graphics, w, h, minX, minY, maxX, maxY);
+                g.DrawInnards(graphics, w, h, minX, minY, maxX, maxY);
             }
         } else {
             if (g.GetDrawArea()) {
@@ -77,7 +77,7 @@ public class GraphPanel extends JPanel {
                 g.drawArea(graphics, w, h);
             } else {
                 g.drawGrid(graphics, w, h);
-                g.drawLine(graphics, w, h);
+                g.DrawInnards(graphics, w, h);
             }
         }
         
@@ -88,7 +88,7 @@ public class GraphPanel extends JPanel {
             if(line.GetDrawArea()){
                 line.drawArea(graphics, w, h,g.getMinX(),g.getMinY(),g.getMaxX(),g.getMaxY());
             }else{
-                line.drawLine(graphics, w, h,g.getMinX(),g.getMinY(),g.getMaxX(),g.getMaxY());
+                line.DrawInnards(graphics, w, h,g.getMinX(),g.getMinY(),g.getMaxX(),g.getMaxY());
             }
         }
     }
